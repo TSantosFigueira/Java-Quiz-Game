@@ -1,79 +1,68 @@
-import javax.swing.JOptionPane;
+
 
 public class Quiz {
-	
-	static int nQuestions = 0; // number of questions
-	static int nCorrect = 0; // number of correct answers
-	
-	static String ask(String question) {	
-		while(true) {
-			// ask the question to the user
-			String answer = JOptionPane.showInputDialog(question);
-			
-			// convert answer to upper case
-			answer = answer.toUpperCase();
-			
-			// check if user provided a valid answer, then return this answer
-			if(answer.equals("A") || answer.equals("B") ||answer.equals("C") || answer.equals("D") || answer.equals("E")) {
-				return answer;
-			}
-			// show error message in case the user provided an invalid answer
-			else {
-				JOptionPane.showMessageDialog(null, "Invalid answer. Please enter A, B, C, D, or E.");
-			}
-		}
-	}
-	
-	static void check(String question, String correctAnswer) {
-		// increment the number of questions asked
-		nQuestions += 1;
-		
-		// show question to the user
-		String answer = ask(question);
-		
-		// check if the answer is correct
-		if(answer.equals(correctAnswer)) {
-			// if it is, increment the number of correct answers
-			nCorrect += 1;
-			// show success message to the user
-			JOptionPane.showMessageDialog(null, "Correct!");
-		}
-		else {
-			// show the correct answer to the user
-			JOptionPane.showMessageDialog(null, "Incorrect! The correct answer is " + correctAnswer);
-		}
-	}
 
 	public static void main(String[] args) {
+		
 		// create question #1
-		String firstQuestion = "Star Wars: what is the name of Han Solo's ship?\n";
-		firstQuestion += "A. Flagship\n";
-		firstQuestion += "B. Patrol Cruiser\n";
-		firstQuestion += "C. Empire Ship\n";
-		firstQuestion += "D. Millennium Falcon\n";
-		firstQuestion += "E. Patrol Eagle\n";
+		MultipleChoiceQuestion firstQuestion = new MultipleChoiceQuestion(
+				"Star Wars: what is the name of Han Solo's ship?",
+				"Flagship",
+				"Patrol Cruiser",
+				"Empire Ship",
+				"Millennium Falcon",
+			    "Patrol Eagle",
+			     "D");
 		
 		// create question #2
-		String secondQuestion = "Star Wars: how many languages is C-3PO fluent in?\n";
-		secondQuestion += "A. Below five million\n";
-		secondQuestion += "B. Below six million\n";
-		secondQuestion += "C. Over six million\n";
-		secondQuestion += "D. Over eight million\n";
-		secondQuestion += "E. Over eight million\n";
-
+		MultipleChoiceQuestion secondQuestion = new MultipleChoiceQuestion(
+				"Star Wars: how many languages is C-3PO fluent in?",
+				"Below five million",
+				"Below six million",
+				"Over six million",
+				"Over eight million",
+			    "Over ten million",
+			    "C");
+	
 		// create question #3
-		String thirdQuestion = "Harry Potter: What does the Imperius Curse do?\n";
-		thirdQuestion += "A. Mimics\n";
-		thirdQuestion += "B. Controls\n";
-		thirdQuestion += "C. Kills\n";
-		thirdQuestion += "D. Tortures\n";
-		thirdQuestion += "E. Jumps\n";
-
-		// ask the user the three questions
-		check(firstQuestion, "D");
-		check(secondQuestion, "C");
-		check(thirdQuestion, "B");
+		MultipleChoiceQuestion thirdQuestion = new MultipleChoiceQuestion(
+				"Star Wars: Who was offered and turned down the part of Han Solo in the original"
+				+ "Star Wars film?",
+				"Sylvester Stallone",
+				"Bruce Willis",
+				"Roger Moore",
+				"Al Pacino",
+			    "Sean Connery",
+			    "D");
 		
-		JOptionPane.showMessageDialog(null, nCorrect + " correct out of " + nQuestions + " questions");
+		//create question #4
+		MultipleChoiceQuestion fourthQuestion = new MultipleChoiceQuestion(
+				"Harry Potter: What does the Imperius Curse do?",
+				"Mimics",
+				"Controls",
+				"Kills",
+				"Tortures",
+			    "Jumps",
+			    "B");
+		
+		//create question #5
+		MultipleChoiceQuestion fifthQuestion = new MultipleChoiceQuestion(
+				"Harry Potter: How long is the first movie (The Philosopher's Stone)?",
+				"1.5 hours",
+				"2.5 hours",
+				"3.5 hours",
+				"4 hours",
+			    "4.5 hours",
+			    "B");
+
+		// ask the user all questions
+		firstQuestion.check();
+		secondQuestion.check();
+		thirdQuestion.check();
+		fourthQuestion.check();
+		fifthQuestion.check();
+		
+		// after answering all the question, show results to the user
+		MultipleChoiceQuestion.showResults();
 	}
 }
