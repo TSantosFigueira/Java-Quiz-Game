@@ -5,7 +5,7 @@ public class Quiz {
 	public static void main(String[] args) {
 		
 		// create question #1
-		MultipleChoiceQuestion firstQuestion = new MultipleChoiceQuestion(
+		Question firstQuestion = new MultipleChoiceQuestion(
 				"Star Wars: what is the name of Han Solo's ship?",
 				"Flagship",
 				"Patrol Cruiser",
@@ -15,7 +15,7 @@ public class Quiz {
 			     "D");
 		
 		// create question #2
-		MultipleChoiceQuestion secondQuestion = new MultipleChoiceQuestion(
+		Question secondQuestion = new MultipleChoiceQuestion(
 				"Star Wars: how many languages is C-3PO fluent in?",
 				"Below five million",
 				"Below six million",
@@ -25,7 +25,7 @@ public class Quiz {
 			    "C");
 	
 		// create question #3
-		MultipleChoiceQuestion thirdQuestion = new MultipleChoiceQuestion(
+		Question thirdQuestion = new MultipleChoiceQuestion(
 				"Star Wars: Who was offered and turned down the part of Han Solo in the original"
 				+ "Star Wars film?",
 				"Sylvester Stallone",
@@ -36,7 +36,7 @@ public class Quiz {
 			    "D");
 		
 		//create question #4
-		MultipleChoiceQuestion fourthQuestion = new MultipleChoiceQuestion(
+		Question fourthQuestion = new MultipleChoiceQuestion(
 				"Harry Potter: What does the Imperius Curse do?",
 				"Mimics",
 				"Controls",
@@ -46,7 +46,7 @@ public class Quiz {
 			    "B");
 		
 		//create question #5
-		MultipleChoiceQuestion fifthQuestion = new MultipleChoiceQuestion(
+		Question fifthQuestion = new MultipleChoiceQuestion(
 				"Harry Potter: How long is the first movie (The Philosopher's Stone)?",
 				"1.5 hours",
 				"2.5 hours",
@@ -54,6 +54,17 @@ public class Quiz {
 				"4 hours",
 			    "4.5 hours",
 			    "B");
+		
+		//create question #6
+		Question sixthQuestion = new TrueFalseQuestion("UoPeople is tution free?", "TRUE");
+		//create question #7
+		Question seventhQuestion = new TrueFalseQuestion("Christmas happens on January 1st?", "FALSE");
+		//create question #8
+		Question eigthQuestion = new TrueFalseQuestion("Joe Biden is the new president of the US?", "TRUE");
+		//create question #9
+		Question ninethQuestion = new TrueFalseQuestion("Google owns Windows 10?", "FALSE");
+		//create question #10
+		Question tenthQuestion = new TrueFalseQuestion("Microsoft owns Xbox?", "TRUE");
 
 		// ask the user all questions
 		firstQuestion.check();
@@ -61,8 +72,13 @@ public class Quiz {
 		thirdQuestion.check();
 		fourthQuestion.check();
 		fifthQuestion.check();
+		sixthQuestion.check();
+		seventhQuestion.check();
+		eigthQuestion.check();
+		ninethQuestion.check();
+		tenthQuestion.check();		
 		
 		// after answering all the question, show results to the user
-		MultipleChoiceQuestion.showResults();
+		Question.showResults();
 	}
 }
