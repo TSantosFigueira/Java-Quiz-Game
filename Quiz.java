@@ -75,7 +75,7 @@ public class Quiz {
 		sixthQuestion.check();
 		seventhQuestion.check();
 		eigthQuestion.check();
-		ninethQuestion.check();
+		ninethQuestion.check(); 
 		tenthQuestion.check();		
 		
 		// after answering all the question, show results to the user

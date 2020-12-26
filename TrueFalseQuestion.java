@@ -1,9 +1,22 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class TrueFalseQuestion extends Question {
 	
 	public TrueFalseQuestion (String question, String answer) {
-		this.question = "TRUE or FALSE: " + question;
+		
+		super(question);
+		
+		// buttons panel
+		JPanel buttons = new JPanel();
+		
+		// add buttons
+		addButton(buttons,"TRUE");
+		addButton(buttons,"FALSE");
+		
+		// add the buttons panel to this dialog box
+		this.question.add(buttons);
+		
+		initQuestionDialog();
 		
 		// convert answer to upper case
 		answer = answer.toUpperCase();
@@ -16,31 +29,16 @@ public class TrueFalseQuestion extends Question {
 		else if(answer.equals("T")|| answer.equals("TRUE") || answer.equals("Y") || answer.equals("YES")) {
 			this.correctAnswer = "TRUE";
 		}
-	}
-
-	@Override
-	String ask() {
-		while(true) {
-			// ask the question to the user
-			String answer = JOptionPane.showInputDialog(question);
-			
-			// convert answer to upper case
-			answer = answer.toUpperCase();
-			
-			// check if user provided a valid answer, then return this answer
-			// check if the answer is FALSE			
-			if(answer.equals("F") || answer.equals("FALSE") ||answer.equals("N") || answer.equals("NO")) {
-				return "FALSE";
-			}
-			// check if the answer is TRUE
-			else if(answer.equals("T")|| answer.equals("TRUE") || answer.equals("Y") || answer.equals("YES")) {
-				return "TRUE";
-			}
-			// show error message in case the user provided an invalid answer
-			else {
-				JOptionPane.showMessageDialog(null, "Invalid answer. Please enter TRUE or FALSE");
-			}
-		}
+	}	
+	
+	// method to create a button
+	private void addButton(JPanel buttons, String label) {
+		// create button with the provided label
+		JButton button = new JButton(label);
+		// add click event handler
+		button.addActionListener(question);
+		// add button to the panel
+		buttons.add(button);
 	}
 
 }

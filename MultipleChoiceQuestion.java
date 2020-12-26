@@ -1,37 +1,46 @@
-import javax.swing.JOptionPane;
+import java.awt.*;
+import javax.swing.*;
 
 public class MultipleChoiceQuestion extends Question {
 		
 	public MultipleChoiceQuestion(String query, String a, String b, String
 			c, String d, String e, String answer) {
-		// initialize question 
-		question = query + "\n";
-		// add question options
-		question += "A. " + a + "\n";
-		question += "B. " + b + "\n";
-		question += "C. " + c + "\n";
-		question += "D. " + d + "\n";
-		question += "E. " + e + "\n";
+		
+		super(query);
+		
+		// add choices
+		addChoice("A", a);
+		addChoice("B", b);
+		addChoice("C", c);
+		addChoice("D", d);
+		addChoice("E", e);
+		
+		initQuestionDialog();
+		
 		// initialize the correct answer
-		correctAnswer = answer;
+		correctAnswer = answer;		
 	}
 	
-	String ask() {	
-		while(true) {
-			// ask the question to the user
-			String answer = JOptionPane.showInputDialog(question);
-			
-			// convert answer to upper case
-			answer = answer.toUpperCase();
-			
-			// check if user provided a valid answer, then return this answer
-			if(answer.equals("A") || answer.equals("B") ||answer.equals("C") || answer.equals("D") || answer.equals("E")) {
-				return answer;
-			}
-			// show error message in case the user provided an invalid answer
-			else {
-				JOptionPane.showMessageDialog(null, "Invalid answer. Please enter A, B, C, D, or E.");
-			}
-		}
+	@Override
+	String ask() {
+		// make the question dialog visible
+		question.setVisible(true);
+		// return the answer
+		return question.answer;
+	}
+	
+	void addChoice(String name, String label) {
+		// create a panel using BorderLayout
+		JPanel choice = new JPanel(new BorderLayout());
+		// create a button with the given name
+		JButton button = new JButton(name);
+		// add click event handler
+		button.addActionListener(question);
+		// add this button to the choice panel
+		choice.add(button,BorderLayout.WEST);
+		// align the text to the left
+		choice.add(new JLabel(label + " ", JLabel.LEFT), BorderLayout.CENTER);
+		// add choice to the dialog box
+		question.add(choice);
 	}
 }
